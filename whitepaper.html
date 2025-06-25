@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SolidMark (SLK) Whitepaper</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background: #f9f9f9;
+      color: #333;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    h1 {
+      border-bottom: 2px solid #2c3e50;
+      padding-bottom: 0.5rem;
+    }
+    ul {
+      list-style-type: disc;
+      margin-left: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 0.5rem;
+      text-align: left;
+    }
+    canvas {
+      margin-top: 1rem;
+      max-width: 300px;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>SolidMark (SLK) Whitepaper</h1>
+  <p><strong>Version:</strong> 1.0<br><strong>Date:</strong> June 2025</p>
+
+  <h2>1. Introduction</h2>
+  <p>SolidMark (SLK) is a next-generation digital asset designed for resilience, clarity, and long-term value. Rooted in a vision of strength and transparency, SolidMark offers a modern identity for decentralized ecosystems, combining a bold brand presence with practical utility. In an industry that evolves rapidly, SLK is built to stand firm and offer real-world applications backed by deliberate and sustainable growth strategies.</p>
+
+  <h2>2. Vision and Mission</h2>
+  <h3>Vision</h3>
+  <p>To become a leading digital asset recognized for its robust foundation, trust-centric architecture, and utility in building decentralized systems of the future.</p>
+  <h3>Mission</h3>
+  <ul>
+    <li>Deliver a reliable, utility-driven token that supports meaningful applications.</li>
+    <li>Provide a tokenomics structure that ensures sustainability and aligns all stakeholder interests.</li>
+    <li>Uphold principles of transparency, fairness, and innovation.</li>
+  </ul>
+
+  <h2>3. Token Overview</h2>
+  <table>
+    <tr><th>Token Name</th><td>SolidMark</td></tr>
+    <tr><th>Symbol</th><td>SLK</td></tr>
+    <tr><th>Blockchain</th><td>Solana (SPL Token 2022)</td></tr>
+    <tr><th>Total Supply</th><td>100,000,000 SLK</td></tr>
+    <tr><th>Decimals</th><td>6</td></tr>
+    <tr><th>Utility</th><td>Governance, staking, ecosystem payments, development incentives</td></tr>
+  </table>
+
+  <h2>4. Token Allocation</h2>
+  <ul>
+    <li>Public Sale: 30%</li>
+    <li>Team & Development: 26% (Vested with a cliff; see Section 5)</li>
+    <li>Ecosystem & Partnerships: 20%</li>
+    <li>Treasury & DAO Reserve: 15%</li>
+    <li>Advisors & Early Supporters: 5%</li>
+    <li>Marketing & Community Incentives: 4%</li>
+  </ul>
+  <canvas id="allocationChart"></canvas>
+
+  <h2>5. Vesting Schedule</h2>
+  <p><strong>Team & Development Allocation (26%):</strong></p>
+  <ul>
+    <li>Cliff Period: 1 year (no tokens released during the first year)</li>
+    <li>Vesting: Begins after 1-year cliff</li>
+    <li>Release Rate: 10% of the total team allocation every 6 months</li>
+    <li>Total Vesting Duration: 5 years (including the 1-year cliff)</li>
+  </ul>
+  <p><strong>Schedule Summary:</strong></p>
+  <table>
+    <tr><th>Time from TGE</th><th>Tokens Released</th></tr>
+    <tr><td>0–12 months</td><td>0%</td></tr>
+    <tr><td>18 months</td><td>10%</td></tr>
+    <tr><td>24 months</td><td>20%</td></tr>
+    <tr><td>30 months</td><td>30%</td></tr>
+    <tr><td>36 months</td><td>40%</td></tr>
+    <tr><td>42 months</td><td>50%</td></tr>
+    <tr><td>48 months</td><td>60%</td></tr>
+    <tr><td>54 months</td><td>70%</td></tr>
+    <tr><td>60 months</td><td>80%</td></tr>
+    <tr><td>66 months</td><td>90%</td></tr>
+    <tr><td>72 months</td><td>100%</td></tr>
+  </table>
+  <canvas id="vestingChart"></canvas>
+
+  <script>
+    const vestingCtx = document.getElementById('vestingChart');
+    new Chart(vestingCtx, {
+      type: 'pie',
+      data: {
+        labels: [
+          '0–12 mo', '18 mo', '24 mo', '30 mo', '36 mo', '42 mo',
+          '48 mo', '54 mo', '60 mo', '66 mo', '72 mo'
+        ],
+        datasets: [{
+          label: 'Vesting Progression',
+          data: [0, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
+          backgroundColor: [
+            '#e0e0e0','#f44336','#e91e63','#9c27b0','#673ab7','#3f51b5',
+            '#2196f3','#03a9f4','#00bcd4','#009688','#4caf50'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' },
+          title: {
+            display: true,
+            text: 'Team Vesting Schedule (Over 6-Month Intervals)'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.label}: ${context.parsed}%`;
+              }
+            }
+          }
+        }
+      }
+    });
+
+    const allocationCtx = document.getElementById('allocationChart');
+    new Chart(allocationCtx, {
+      type: 'pie',
+      data: {
+        labels: [
+          'Public Sale', 'Team & Development', 'Ecosystem & Partnerships',
+          'Treasury & DAO Reserve', 'Advisors & Early Supporters', 'Marketing & Community'
+        ],
+        datasets: [{
+          label: 'Token Allocation',
+          data: [30, 26, 20, 15, 5, 4],
+          backgroundColor: [
+            '#4caf50','#2196f3','#ff9800','#9c27b0','#00bcd4','#e91e63'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' },
+          title: {
+            display: true,
+            text: 'SLK Token Allocation'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.label}: ${context.parsed}%`;
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+  <h2>6. Utility and Use Cases</h2>
+  <ul>
+    <li>Governance Participation</li>
+    <li>Staking and Rewards</li>
+    <li>Payments within Ecosystem</li>
+    <li>Incentivizing Developers and Builders</li>
+  </ul>
+
+  <h2>7. Roadmap</h2>
+  <ul>
+    <li>Q2 2025: Token deployment on Solana (SPL Token 2022)</li>
+    <li>Q3 2025: Website + Whitepaper launch, Team vesting contract deployment</li>
+    <li>Q4 2025: IDO / Public sale and liquidity provisioning</li>
+    <li>2026: Ecosystem tools and partnerships; staking rollout</li>
+    <li>2027–2029: Growth, DAO governance, expanded ecosystem apps</li>
+  </ul>
+
+  <h2>8. Security and Transparency</h2>
+  <p>All vesting and treasury contracts will be open-source and verifiable on-chain. Multi-signature wallets and DAO governance will control major decision-making processes, ensuring the integrity and transparency of fund allocation and token movement.</p>
+
+  <h2>9. Conclusion</h2>
+  <p>SolidMark (SLK) is more than just a token. It's a vision of how strength, clarity, and accountability can define the next era of decentralized innovation. With a robust tokenomics model and a vested interest in long-term value creation, SLK is positioned to empower developers, users, and the broader blockchain community.</p>
+
+  <h2>10. Contingency Plan</h2>
+  <p>While our roadmap is designed to ensure sustainable growth, we understand the importance of planning for various outcomes. In the event that SolidMark (SLK) does not meet its token distribution or adoption targets, the following contingency measures will be considered:</p>
+  <ul>
+    <li><strong>Liquidity Management:</strong> Reallocate a portion of the treasury or ecosystem funds to maintain exchange liquidity and project stability.</li>
+    <li><strong>Burn Mechanism:</strong> Introduce a scheduled or performance-based token burn to reduce supply and enhance long-term value for holders.</li>
+    <li><strong>Extended Vesting Adjustments:</strong> Reassess team and advisor vesting terms to align with current performance and extend runway.</li>
+    <li><strong>Ecosystem Stimulus:</strong> Launch grants, developer bounties, or staking rewards to incentivize community participation and project utility.</li>
+    <li><strong>Partnership Pivot:</strong> Actively seek new strategic partnerships or merge resources with aligned projects to strengthen impact and outreach.</li>
+    <li><strong>Governance-Driven Decisions:</strong> Engage the SLK community through DAO mechanisms to vote on critical pivots and future directions.</li>
+  </ul>
+  <p>These strategies aim to uphold the token's integrity, maintain user trust, and navigate the project through unforeseen challenges while remaining true to our mission.</p>
+</body>
+</html>
